@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Animation SVG</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+<body>
+<div id="svgContainer">
+    <svg id="svg1" width="100" height="100" >
+      <ellipse 
+        id='ellipse1'
+        cx='540' cy='40' rx='10' ry='20'
+        stroke='#000' 
+        fill='#000' 
+      />
+       <circle 
+        id='circle1'
+        cx='50' cy='40' r='5'
+        stroke='#000' 
+        fill='#000' 
+      />
+      <rect
+        id='rect1'
+        x='50' y='40' width='50' height ='50'
+        stroke='#000' 
+        fill='#000' 
+      />
+        <path
+            id="path1"
+            d="M0 0"         
+            stroke="#000" 
+            fill="none" 
+            stroke-width="12px";/>
+         
+    </svg>
+
+
+<script src="vector2D.js"></script>
+<script src="mover.js"></script>
+<script src="ellipse.js"></script>
+<script src="circle.js"></script>
+<script src="rect.js"></script>
+
+
+<script src="svgDraw.js"></script>
+</body>
+</html>
