@@ -4,9 +4,13 @@
 // mover is instantiated with a position, velocity and acceleration Vector2D and mass if supplied, otherwise default values are used
 // all values (position, veloity, acc can be changed later)
 function moverFactory(type, positionVect, velocityVect, accVect, mass){
+    // check if requested type is either circle, ellipse or rect, otherwise create default: circle
     if ( $.inArray(type,  ['circle', 'ellipse', 'rect']) == -1) type ='circle';
+    
+    // check if position vector is supplied, if not use default, Vector2D(0,0)
     positionVect = positionVect instanceof Vector2D ? positionVect :  new Vector2D(); 
-    var id = ''
+    
+    var id = ''    
     if (type == 'circle'){
         id   = 'circle' + $('circle').length;
         $(SVG(type))
@@ -18,6 +22,7 @@ function moverFactory(type, positionVect, velocityVect, accVect, mass){
             .appendTo($('#svg1'));
         return new Circle('#'+id, positionVect, velocityVect, accVect, mass);
     }
+
     else if (type == 'ellipse'){
         id   = 'ellipse' + $('ellipse').length;
         $(SVG(type))
@@ -30,6 +35,7 @@ function moverFactory(type, positionVect, velocityVect, accVect, mass){
             .appendTo($('#svg1'));
         return new Ellipse('#'+id, positionVect, velocityVect, accVect, mass);
     }
+
     else if (type == 'rect'){
         id   = 'rect' + $('rect').length;
         $(SVG(type))
