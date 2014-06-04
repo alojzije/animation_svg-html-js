@@ -62,19 +62,23 @@ Mover.prototype.checkIfFinished = function (intervalId) {
 Mover.prototype.setPosition = function (x,y) {
     if (x instanceof Vector2D)      // if x is a vector
         this.position = x; 
-    else if (isFinite(x))           // if x is a number
-        this.position.x = x
-    else if (isFinite(y))           // if x is a number
-        this.position.y = y
+    else{
+        if (isFinite(x))           // if x is a number
+            this.position.x = x
+        if (isFinite(y))           // if x is a number
+            this.position.y = y
+    }
 }
 
 Mover.prototype.setVelocity = function (x,y) {
     if (x instanceof Vector2D)      // if x is a vector
         this.velocity = x; 
-    else if (isFinite(x))           // if x is a number
-        this.velocity.x = x
-    else if (isFinite(y))           // if x is a number
-        this.velocity.y = y
+    else{
+        if (isFinite(x))           // if x is a number
+            this.velocity.x = x
+        if (isFinite(y))           // if x is a number
+            this.velocity.y = y
+    }   
 }
 
 

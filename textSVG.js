@@ -15,6 +15,7 @@ function addText(message, x, y){
     txt.attr('y', y - h/2);
     
 }
+
 function addDescription(message){
     var id  = 'text_description';
     var txt = $(SVG('text'))
@@ -40,28 +41,52 @@ function recalibrateDescription(){
     txt.attr('y', $(window).height()/2  - h/2);
 }
 
-function displayCurrentHtml(){
-    var id  = 'current_Html';
+function displaySVGState(){
+    // create new txt element, add it to <svg>
+    var id  = 'svg_state';
     var txt = $(SVG('text'))
                 .attr('id', id)
                 .appendTo($('#svg1'));
-    for (var i in currentHtml){
-        $(SVG('tspan'))
-            .attr('x' , 0)
-            .attr('dy', 27)
-            .html(currentHtml[i])
-            .appendTo(txt)
+
+    // what will be printed out
+    var state = [
+        '&lt;svg&gt',
+        '&lt;rect/&gt ',
+        '&lt;circle/&gt ',
+        '&lt;ellipse/&gt ',    
+        '&lt;text&gt ... &lt;/text&gt',     
+        '&lt;/svg&gt'];
+
+    for (var i in state){
+        var found = state[i].match(/;([a-z]+)[&\/]{1}/i);
+        var type  = found && found[1] ? found[1] : '';
+
+        var tSpan = $(SVG('tspan'))
+                .attr('dy', 27)
+                .attr('id',  'txt_'+ type );
+        if (type == 'svg' || type == ''){
+            tSpan.attr('x', 10)
+                .html(state[i])
+                .appendTo(txt);
+
+        }else if ($(type).length){
+            tSpan.attr('x', 40)
+                .html(state[i] + ' &ensp; x ' + $(type).length)
+                .appendTo(txt)
+        }
     }
-
-    var w = document.getElementById(id).getBoundingClientRect().width
-    var h = document.getElementById(id).getBoundingClientRect().height;
-
-    txt.attr('x', 0 );
-    txt.attr('y', 0 );
-
-    $(SVG('tspan'))
-            .attr('x' , 0)
-            .attr('dy', 27)
-            .html('lal')
-            .appendTo(txt).show('slow');
 }
+
+function updateStateTxt(type){
+    if  ($('#txt_'+type).length == 0){
+       var tSpan = $(SVG('tspan'))
+            .attr('x' , 40)
+            .attr('dy', 27)
+            .attr('id', 'txt_'+type)
+            $('#txt_svg').after(tSpan);
+    }
+    
+    $('#txt_'+type).html('&lt;'+type+'/&gt; &ensp; x ' + $(type).length)
+}
+
+   
