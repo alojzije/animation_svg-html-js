@@ -15,4 +15,7 @@ text{
 	font-family:   'Raleway', sans-serif;
 }
 
+text tspan{
+	font-size: 0.6em;
+}
 

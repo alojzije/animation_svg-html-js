@@ -1,3 +1,14 @@
+var currentHtml = [
+'&lt;html&gt; '    ,
+'&ensp;             &lt;body&gt;'  ,
+'&ensp;&ensp;&ensp; &lt;svg&gt;' ,
+''          ,
+'&ensp;&ensp;&ensp; &lt;/svg&gt;',
+''          ,
+'&ensp;&ensp;&ensp; &lt;script&gt;...&lt;/script&gt;',
+'&ensp;             &lt;/body&gt;' ,
+'&lt;/html&gt;']
+
 function makeRandomMover(e){
     var x = (e.pageX);
     var y = (e.pageY);
@@ -9,7 +20,9 @@ function makeRandomMover(e){
 }
 
 $(document).ready(function() {
+    console.log(currentHtml);
     addDescription('click anywhere and see what happens');
+    displayCurrentHtml();
     addPredefinedMovers(); 
 
 	$(window).click(function(e) {
@@ -19,8 +32,6 @@ $(document).ready(function() {
 
 });
 
-
 $(window).resize(function () {
     recalibrateDescription();
-
 });
