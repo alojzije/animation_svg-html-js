@@ -62,10 +62,10 @@ function displaySVGState(){
         var type  = found && found[1] ? found[1] : '';
 
         var tSpan = $(SVG('tspan'))
-                .attr('dy', 27)
+                .attr('dy', 25)
                 .attr('id',  'txt_'+ type );
         if (type == 'svg' || type == ''){
-            tSpan.attr('x', 10)
+            tSpan.attr('x', 15)
                 .html(state[i])
                 .appendTo(txt);
 
