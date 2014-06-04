@@ -93,9 +93,7 @@ $(document).ready(function() {
     m.position.y = $(window).height()-50;
     m.velocity.y = -10;
     m.velocity.x = -5;
-    animateMover(m);
-
-        
+    animateMover(m);        
 
 	$(window).click(function(e) {
       var x = (e.pageX);
