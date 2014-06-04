@@ -1,7 +1,7 @@
 body{
 	margin:  0;
-	padding: 0;
-}
+	padding: 0;}
+
 
 svg { 
 	width: 	  100vw;
@@ -10,12 +10,19 @@ svg {
 	overflow: hidden;
 	position: absolute;
 }
+
+
 text{
-	font-size: 2em;
-	font-family:   'Raleway', sans-serif;
+	font-size:   2em;
+	font-family: 'Raleway', sans-serif;
 }
 
-text tspan{
+
+text tspan{	
 	font-size: 0.6em;
 }
 
+
+.random_color:hover { 
+	opacity :1 !important;
+}
