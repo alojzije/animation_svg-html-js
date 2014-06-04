@@ -99,9 +99,15 @@ $(document).ready(function() {
     var m = moverFactory('circle');
     m.position.x = $(window).width()-50;
     m.position.y = $(window).height()-50;
-    m.velocity.y = -10;
-    m.velocity.x = -5;
-    animateMover(m);        
+    m.velocity.y = -15;
+    m.velocity.x = -13;
+    animateMover(m);  
+    var m1 = moverFactory('circle');
+    m1.position.x = $(window).width()/2;
+    m1.position.y = $(window).height()-50;
+    m1.velocity.y = -15;
+    m1.velocity.x = -1;
+    animateMover(m1);         
 
 	$(window).click(function(e) {
         var x = (e.pageX);
