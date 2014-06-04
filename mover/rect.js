@@ -31,3 +31,15 @@ Rect.prototype.show = function () {
         $(this.domId).attr("y", this.position.y);
     }
 }
+Rect.prototype.setDimensions = function (width, height) {
+    if( $(this.domId).length > 0){                                                 // check if element exists           
+        if (isFinite(width)) {
+            $(this.domId).attr('width', width);
+            this.rx = width;
+        }
+        if (isFinite(height)) {
+            $(this.domId).attr('height', height);
+            this.ry = height;
+        }
+    }
+}

@@ -24,3 +24,16 @@ Ellipse.prototype.getRadiusY = function () {
         if ($(this.domId).attr('ry')) return parseInt($(this.domId).attr('ry'));    // for SVG shapes <ellipse> 
     else return 0;
 }
+
+Ellipse.prototype.setDimensions = function (rx,ry) {
+    if( $(this.domId).length > 0){                                                 // check if element exists           
+        if (isFinite(rx)) {
+            $(this.domId).attr('rx', rx);
+            this.rx = rx;
+        }
+        if (isFinite(rx)) {
+            $(this.domId).attr('ry', ry);
+            this.ry = ry;
+        }
+    }
+}
