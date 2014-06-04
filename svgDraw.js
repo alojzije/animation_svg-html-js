@@ -1,7 +1,6 @@
 var randomColor = false;
 
 
-
 $(document).ready(function() {
     
     addDescription('click anywhere and see what happens');
@@ -20,7 +19,10 @@ $(document).ready(function() {
 	// drawFractal
 
 });
-
+$(window).load(function () {
+    recalibrateDescription();
+    addRandomColorPossibility();
+});
 $(window).resize(function () {
     recalibrateDescription();
     addRandomColorPossibility();
