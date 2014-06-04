@@ -12,4 +12,5 @@ function addPredefinedMovers(){
     m2.setPosition( $(window).width()/2, $(window).height()-50);
     m2.setVelocity(-15, -1);
     animateGravity(m2);  
+    return [m0,m1,m2];
 }

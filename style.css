@@ -1,6 +1,6 @@
 body{
-	margin:  0;
-	padding: 0;
+	margin:    0;
+	padding:   0;
 	font-size: 12px;
 }
 
@@ -15,13 +15,13 @@ svg {
 
 
 text{
-	font-size:   2em;
+	font-size:    2.5em;
 	font-family: 'Raleway', 'Verdana',  serif;
 }
 
 
 text tspan{	
-	font-size: 0.6em;
+	font-size: 0.7em;
 }
 
 
