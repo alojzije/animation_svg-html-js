@@ -83,8 +83,16 @@ function animateMover(m){
     }, 10);
 
 }
+function calibrateText(){
+    w = document.getElementById('text1').getBoundingClientRect().width
+    $('#text1').attr('x', $(window).width()/2 -w/2);
+    $('#text1').attr('y', $(window).height()/2.75);
+
+
+}
 
 $(document).ready(function() {
+    calibrateText();
     var types = ['circle', 'ellipse', 'rect'];
 	var mover = getMover('#circle0', 0, $(window).height()-10);
 	 animateMover(mover);
@@ -96,10 +104,13 @@ $(document).ready(function() {
     animateMover(m);        
 
 	$(window).click(function(e) {
-      var x = (e.pageX);
-      var y = (e.pageY);
-      animateMover(moverFactory(types[Math.floor(Math.random() * types.length)],
-                                 new Vector2D(x,y))); // random svg type
+        var x = (e.pageX);
+        var y = (e.pageY);
+        //var n = moverFactory(types[Math.floor(Math.random() * types.length)], new Vector2D(x,y))); // random svg type
+        var n = moverFactory('circle', new Vector2D(x,y));
+        $(n.domId).attr('r', Math.random()*35 + 5)
+        n.getRadius();
+        animateMover(n);
       
 
     });
@@ -110,7 +121,6 @@ $(document).ready(function() {
 
 $(window).resize(function () {
     // reset svg each time 
-     for (m in movers)
-         animateMover(m);
+ calibrateText();
 
 });
