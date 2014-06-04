@@ -28,7 +28,7 @@ function addRandomColorPossibility(){
  
     var w = document.getElementById('text_description').getBoundingClientRect().width/2;
     var h = document.getElementById('text_description').getBoundingClientRect().height;
-    var x = $(window).width() /2 + w +10;
+    var x = $(window).width() /2 + 1.01*w ;
     var y = $(window).height()/2 - 1.5*h ;
  
     var c = 13 ;

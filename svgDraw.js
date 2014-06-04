@@ -7,6 +7,7 @@ $(document).ready(function() {
     addRandomColorPossibility();
     addPredefinedMovers(); 
     displaySVGState();
+    $( "#text_description" ).change(function() {alert("bok")});
     
     $('.random_color').click(function() {
        randomColor = !randomColor;
@@ -18,11 +19,12 @@ $(document).ready(function() {
     });
 	// drawFractal
 
+
 });
 $(window).load(function () {
-    recalibrateDescription();
-    addRandomColorPossibility();
+    $(window).trigger('resize');
 });
+
 $(window).resize(function () {
     recalibrateDescription();
     addRandomColorPossibility();
