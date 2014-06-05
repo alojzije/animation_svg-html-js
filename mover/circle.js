@@ -7,7 +7,7 @@ function Circle(domId, position, velocity, acceleration, mass){
     this.acceleration = acceleration instanceof Vector2D ? acceleration : new Vector2D(); 
     this.domId        =        domId instanceof String || typeof domId == 'string' ? domId : '';
     this.rx = this.getRadius();
-    this.ry = this.rx
+    this.ry = this.rx;
 }
 // interites Mover()
 Circle.prototype = new Mover();
@@ -18,3 +18,12 @@ Circle.prototype.getRadius = function () {
         if ($(this.domId).attr('r')) return parseInt($(this.domId).attr('r'));      // for SVG shapes <circle> 
     else return 0;
 }
+
+Circle.prototype.setDimensions = function (r) {
+    if( $(this.domId).length > 0 && isFinite(r)){                                   // check if element exists
+        $(this.domId).attr('r', r);                                                 // for SVG shapes <circle> 
+        this.rx = r;
+        this.ry = r;
+    }
+}
+

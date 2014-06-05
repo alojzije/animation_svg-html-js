@@ -1,50 +1,38 @@
-
-
-function getMover(id,x,y){
-    var xCoord = isFinite(x) ? x: 0;
-    var yCoord = isFinite(y) ? y: 0;
-    var pos = new Vector2D(xCoord, yCoord);
-    var veloc = new Vector2D(9,-12);
-    var acc = new Vector2D(0,0);
-    //m = new Mover('#ellipse1', pos, veloc, acc, 2);
-    //m = new Rect('#rect1', pos, veloc, acc, 2);
-
-    var m = new Mover(id, pos, veloc, acc, 2);
-
-
-    return m;
- }
-
-function animateMover(m){
-    var gravity = new Vector2D(0,0.1*m.mass);
-    //wind = new Vector2D(0.04,0);
-    var intervalId = window.setInterval( function(){
-        friction = Vector2D.getNormalized(m.velocity)
-        friction.mult(-0.03)
-         m.applyForce(friction);
-         m.applyForce(gravity);
-         //m.applyForce(wind);
-         m.update()
-         m.show()
-         m.checkEdges()
-         m.checkIfFinished(intervalId)
-        
-    }, 10);
-
-}
+var randomColor = false;
+ var movers = []
 
 $(document).ready(function() {
-    var mover = getMover('#circle1', 0, $(window).height()-10);
-     animateMover(mover);
-     animateMover(getMover('#circle2'));
+    addDescription('click anywhere and see what happens');
+    addRandomColorPossibility();
+    movers = addPredefinedMovers(); //list
+    displaySVGState();
+    $( "#text_description" ).change(function() {alert("bok")});
+    
+    $('.random_color').click(function() {
+       randomColor = !randomColor;
+       changePolygonColor(randomColor);
+    });
 
-    console.log(mover.position);
-    // drawFractal
+	$(window).click(function(e) {
+        if (movers.length >100){      // if array is larger than 100  
+            hideMover(movers[0]);   // hide first element 
+            movers.splice(0,1)      // pop  to add a new one
+        }
+        movers.push(makeRandomMover(e, randomColor));
+    });
+	// drawFractal
+
 
 });
-
+$(window).load(function () {
+    $(window).trigger('resize');
+});
 
 $(window).resize(function () {
-    // reset svg each time 
-
+    recalibrateDescription();
+    addRandomColorPossibility();
+    for (var i in movers){
+        if (!movers[i].isMoving)
+            animateGravity(movers[i]);
+    }
 });
