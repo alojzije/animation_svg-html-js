@@ -5,13 +5,16 @@ function makeRandomMover(e, randomColor){
 
     //var type = types[Math.floor(Math.random() * types.length)]      // random svg <type>
     var type = 'circle'
-    var m = moverFactory(type, new Vector2D(x,y));
-    
+    var m    = moverFactory(type, new Vector2D(x,y));
+  
     m.setDimensions(Math.random()*35 + 5, Math.random()*35 + 5); //random size
+    m.mass   = m.rx * 0.1;
     animateGravity(m); 
+
     if (randomColor) randomizeColor(m);
-    
+
     updateStateTxt(type);
+    return m;
 }
 
 
@@ -23,6 +26,9 @@ function randomizeColor(m){
     $(m.domId).attr('style', rgb);
 }
 
+function hideMover(m){
+    $(m.domId).attr('style','display:none;');
+}
 
 function addRandomColorPossibility(){
  

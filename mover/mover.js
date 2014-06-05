@@ -7,8 +7,10 @@ function Mover(domId, position, velocity, acceleration, mass){
     this.velocity     =     velocity instanceof Vector2D ? velocity :     new Vector2D(); 
     this.acceleration = acceleration instanceof Vector2D ? acceleration : new Vector2D(); 
     this.domId        =        domId instanceof String || typeof domId == 'string' ? domId : '';
+    this.isMoving = false;
     this.rx = this.getRadiusX();
     this.ry = this.getRadiusY();
+
 }
 
 
@@ -19,6 +21,7 @@ Mover.prototype.applyForce = function (force) {
 }
 
 Mover.prototype.update = function () {
+    this.isMoving = true;
     this.velocity.add(this.acceleration);
     this.position.add(this.velocity);
     this.acceleration.mult(0);
@@ -55,6 +58,7 @@ Mover.prototype.checkIfFinished = function (intervalId) {
 
     if (Math.abs(this.position.y + this.ry - $(window).height()) <  err && this.velocity.getMagnitude() < err ){
         clearInterval(intervalId);
+        this.isMoving = false;
         console.log("fin " + this.domId);
     }
 }

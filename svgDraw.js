@@ -1,11 +1,10 @@
 var randomColor = false;
-
+ var movers = []
 
 $(document).ready(function() {
-    
     addDescription('click anywhere and see what happens');
     addRandomColorPossibility();
-    addPredefinedMovers(); 
+    movers = addPredefinedMovers(); //list
     displaySVGState();
     $( "#text_description" ).change(function() {alert("bok")});
     
@@ -15,7 +14,11 @@ $(document).ready(function() {
     });
 
 	$(window).click(function(e) {
-        makeRandomMover(e, randomColor);
+        if (movers.length >100){      // if array is larger than 100  
+            hideMover(movers[0]);   // hide first element 
+            movers.splice(0,1)      // pop  to add a new one
+        }
+        movers.push(makeRandomMover(e, randomColor));
     });
 	// drawFractal
 
@@ -28,4 +31,8 @@ $(window).load(function () {
 $(window).resize(function () {
     recalibrateDescription();
     addRandomColorPossibility();
+    for (var i in movers){
+        if (!movers[i].isMoving)
+            animateGravity(movers[i]);
+    }
 });
