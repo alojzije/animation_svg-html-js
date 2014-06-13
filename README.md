@@ -1,4 +1,4 @@
-animation_svg-html-js
+svg Gravity Simulation javaScript
 =====================
 
 simulate motion with svg and js
