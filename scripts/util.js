@@ -19,9 +19,9 @@ function makeRandomMover(e, randomColor){
 
 
 function randomizeColor(m){
-    var r   = parseInt(Math.random()*155+50);
-    var g   = parseInt(Math.random()*155+50);
-    var b   = parseInt(Math.random()*155+50);
+    var r   = parseInt(Math.random()*255);
+    var g   = parseInt(Math.random()*255);
+    var b   = parseInt(Math.random()*255);
     var rgb = 'fill:rgb(' + r + ',' + g + ',' + b + ');';
     $(m.domId).attr('style', rgb);
 }

@@ -46,19 +46,21 @@ function displaySVGState(){
     var id  = 'svg_state';
     var txt = $(SVG('text'))
                 .attr('id', id)
+                .attr('x', 0)
+                .attr('y', 0) 
                 .appendTo($('#svg1'));
 
     // what will be printed out
     var state = [
-        '&lt;svg&gt',
-        '&lt;rect/&gt ',
-        '&lt;circle/&gt ',
-        '&lt;ellipse/&gt ',    
-        '&lt;text&gt ... &lt;/text&gt',     
-        '&lt;/svg&gt'];
+        '<svg>',
+        '<rect/> ',
+        '<circle/> ',
+        '<ellipse/> ',    
+        '<text> ... </text>',     
+        '</svg>'];
 
     for (var i in state){
-        var found = state[i].match(/;([a-z]+)[&\/]{1}/i);
+        var found = state[i].match(/\<([a-z]+)[\>\/]{1}/i);
         var type  = found && found[1] ? found[1] : '';
 
         var tSpan = $(SVG('tspan'))
@@ -66,12 +68,12 @@ function displaySVGState(){
                 .attr('id',  'txt_'+ type );
         if (type == 'svg' || type == ''){
             tSpan.attr('x', 15)
-                .html(state[i])
+                .text(state[i])
                 .appendTo(txt);
 
         }else if ($(type).length){
             tSpan.attr('x', 40)
-                .html(state[i] + ' &ensp; x ' + $(type).length)
+                .text(state[i] + ' x ' + $(type).length)
                 .appendTo(txt)
         }
     }
@@ -81,12 +83,12 @@ function updateStateTxt(type){
     if  ($('#txt_'+type).length == 0){
        var tSpan = $(SVG('tspan'))
             .attr('x' , 40)
-            .attr('dy', 27)
+            .attr('dy', 25)
             .attr('id', 'txt_'+type)
             $('#txt_svg').after(tSpan);
     }
     
-    $('#txt_'+type).html('&lt;'+type+'/&gt; &ensp; x ' + $(type).length)
+    $('#txt_'+type).text('<'+type+'/>  x ' + $(type).length)
 }
 
    
